@@ -1,4 +1,5 @@
 import 'package:dti_calculator/features/disclaimer/disclaimer_screen.dart';
+import 'package:dti_calculator/features/income_calculator/income_calculator_screen.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: DisclaimerScreen(),
+      home: IncomeCalculatorScreen(),
     );
   }
 }
