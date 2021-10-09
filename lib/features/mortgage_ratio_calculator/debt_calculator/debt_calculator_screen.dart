@@ -19,7 +19,6 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
       "value": 0,
     }
   ];
-  final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter();
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +155,10 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
                 _onUpdate(index, val);
               },
               inputFormatters: <TextInputFormatter>[
-                _formatter,
+                CurrencyTextInputFormatter(
+                  decimalDigits: 0,
+                  locale: 'en',
+                )
               ],
               keyboardType: TextInputType.number,
             ),

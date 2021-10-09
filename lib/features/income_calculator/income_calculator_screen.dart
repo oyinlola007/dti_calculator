@@ -18,7 +18,6 @@ class IncomeCalculatorScreen extends StatefulWidget {
 class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
   String employeeType = "Hourly Employee";
   List<String> employeeTypes = ['Hourly Employee', 'Salary Employee'];
-  final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter();
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +69,10 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
                   // onChanged: (value) => context.read<StaffSearchBloc>()..add(SetStaffSearchKeyword(value)),
 
                   inputFormatters: <TextInputFormatter>[
-                    _formatter,
+                    CurrencyTextInputFormatter(
+                      decimalDigits: 0,
+                      locale: 'en',
+                    )
                   ],
                   keyboardType: TextInputType.number,
                 ),
