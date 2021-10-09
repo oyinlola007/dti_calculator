@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MonthlyIncomeValueWidget extends StatefulWidget {
-  const MonthlyIncomeValueWidget({Key? key}) : super(key: key);
+  final String title;
+  final String value;
+  final Function onPressAction;
+  const MonthlyIncomeValueWidget(
+      {Key? key, required this.title, required this.value, required this.onPressAction})
+      : super(key: key);
 
   @override
   _MonthlyIncomeValueWidgetState createState() => _MonthlyIncomeValueWidgetState();
@@ -20,7 +25,7 @@ class _MonthlyIncomeValueWidgetState extends State<MonthlyIncomeValueWidget> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            "Your Monthly income is show below: ",
+            widget.title,
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -36,7 +41,7 @@ class _MonthlyIncomeValueWidgetState extends State<MonthlyIncomeValueWidget> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  "\$1,000,000",
+                  widget.value,
                   style: TextStyle(fontSize: 18),
                   textAlign: TextAlign.center,
                 ),
@@ -60,7 +65,9 @@ class _MonthlyIncomeValueWidgetState extends State<MonthlyIncomeValueWidget> {
                     'Next',
                     style: TextStyle(fontSize: 20),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.onPressAction();
+                  },
                 ),
               ),
             )

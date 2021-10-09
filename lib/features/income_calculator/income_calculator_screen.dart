@@ -1,6 +1,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:dti_calculator/features/income_calculator/widget/hourly_employee_widget.dart';
-import 'package:dti_calculator/features/income_calculator/widget/monthly_income_value_widget.dart';
+import 'package:dti_calculator/core/widget/value_and_next_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -77,7 +77,11 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
               ),
               HourlyEmployeeWidget(),
               SalaryEmployeeWidget(),
-              MonthlyIncomeValueWidget()
+              MonthlyIncomeValueWidget(
+                title: "Your Monthly income is show below: ",
+                value: "\$1,000,000",
+                onPressAction: onPressAction,
+              )
             ],
           ),
         ),
@@ -89,5 +93,9 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
     setState(() {
       employeeType = newValue;
     });
+  }
+
+  onPressAction() {
+    print("Pressed");
   }
 }
