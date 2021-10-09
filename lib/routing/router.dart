@@ -1,4 +1,4 @@
-import 'package:dti_calculator/features/disclaimer/disclaimer_screen.dart';
+import 'package:dti_calculator/features/disclaimer/presentation/disclaimer_screen.dart';
 import 'package:dti_calculator/features/income_calculator/income_calculator_screen.dart';
 import 'package:flutter/material.dart';
 import 'page_route_constants.dart';

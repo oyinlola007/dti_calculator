@@ -1,4 +1,5 @@
 import 'package:dti_calculator/di/components/service_locator.dart';
+import 'package:dti_calculator/features/income_calculator/bloc/income_calculator_bloc.dart';
 import 'package:dti_calculator/routing/navigation_service.dart';
 import 'package:dti_calculator/routing/page_route_constants.dart';
 import 'package:dti_calculator/routing/router.dart';
@@ -17,6 +18,11 @@ class App extends StatelessWidget {
         BlocProvider<AppBloc>(
           create: (context) {
             return AppBloc(getOnBoardingCompletedUseCase: getIt())..add(GetAppState());
+          },
+        ),
+        BlocProvider<IncomeCalculatorBloc>(
+          create: (context) {
+            return IncomeCalculatorBloc();
           },
         ),
       ],
