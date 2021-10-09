@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DropdownButtonWidget extends StatelessWidget {
+  final List<String> types;
   final String value;
   final Function action;
 
-  DropdownButtonWidget(this.value, this.action);
+  DropdownButtonWidget(this.value, this.action, this.types);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,8 +30,7 @@ class DropdownButtonWidget extends StatelessWidget {
         onChanged: (value) {
           action(value);
         },
-        items: <String>['Hourly Employee', 'Salary Employee']
-            .map<DropdownMenuItem<String>>((String value) {
+        items: types.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(value),

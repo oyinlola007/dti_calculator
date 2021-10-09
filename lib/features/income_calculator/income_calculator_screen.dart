@@ -1,10 +1,12 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:dti_calculator/features/income_calculator/widget/hourly_employee_widget.dart';
 import 'package:dti_calculator/features/income_calculator/widget/monthly_income_value_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'widget/drop_down_button_widget.dart';
+import 'widget/salary_employee_widget.dart';
 
 class IncomeCalculatorScreen extends StatefulWidget {
   const IncomeCalculatorScreen({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class IncomeCalculatorScreen extends StatefulWidget {
 
 class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
   String employeeType = "Hourly Employee";
+  List<String> employeeTypes = ['Hourly Employee', 'Salary Employee'];
   final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter();
 
   @override
@@ -33,10 +36,7 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
               SizedBox(
                 height: 16,
               ),
-              DropdownButtonWidget(
-                employeeType == "Hourly Employee" ? "Hourly Employee" : "Salary Employee",
-                setEmployeeType,
-              ),
+              DropdownButtonWidget(employeeType, setEmployeeType, employeeTypes),
               SizedBox(
                 height: 16,
               ),
@@ -75,6 +75,8 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
                   keyboardType: TextInputType.number,
                 ),
               ),
+              HourlyEmployeeWidget(),
+              SalaryEmployeeWidget(),
               MonthlyIncomeValueWidget()
             ],
           ),
@@ -84,14 +86,8 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
   }
 
   setEmployeeType(String newValue) {
-    if (newValue == "Hourly Employee") {
-      setState(() {
-        employeeType = "Hourly Employee";
-      });
-    } else {
-      setState(() {
-        employeeType = "Salary Employee";
-      });
-    }
+    setState(() {
+      employeeType = newValue;
+    });
   }
 }
