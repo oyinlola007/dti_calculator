@@ -36,7 +36,19 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
               SizedBox(
                 height: 18,
               ),
-              DownPayment(),
+              DownPaymentInPercentage(),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "or",
+                style: TextStyle(),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              DownPaymentInUSD(),
               SizedBox(
                 height: 18,
               ),
@@ -208,41 +220,92 @@ class TermInYears extends StatelessWidget {
   }
 }
 
-class DownPayment extends StatelessWidget {
-  const DownPayment({Key? key}) : super(key: key);
+class DownPaymentInPercentage extends StatelessWidget {
+  const DownPaymentInPercentage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // margin: EdgeInsets.only(left: 8, right: 8, bottom: 8),
-      margin: EdgeInsets.fromLTRB(8, 0, 8, 0),
-      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-      decoration: BoxDecoration(
-        color: Color(0xffD9DBFB),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: TextField(
-        style: TextStyle(
-          color: Colors.black,
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            // margin: EdgeInsets.only(left: 8, right: 8, bottom: 8),
+            margin: EdgeInsets.fromLTRB(8, 0, 8, 0),
+            padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+            decoration: BoxDecoration(
+              color: Color(0xffD9DBFB),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: TextField(
+              style: TextStyle(
+                color: Colors.black,
+              ),
+              decoration: InputDecoration(
+                labelText: "Down Payment in %",
+                // hintText: "Down Payment",
+                // prefixIcon: Icon(CupertinoIcons.money_dollar, color: Colors.black38),
+                labelStyle: TextStyle(color: Colors.black38),
+                border: InputBorder.none,
+              ),
+              onEditingComplete: () {
+                // context.read<StaffSearchBloc>()..add(SearchStaff());
+                // FocusScopeNode currentFocus = FocusScope.of(context);
+                //
+                // if (!currentFocus.hasPrimaryFocus) {
+                //   currentFocus.unfocus();
+                // }
+              },
+              // onChanged: (value) => context.read<StaffSearchBloc>()..add(SetStaffSearchKeyword(value)),
+              keyboardType: TextInputType.number,
+            ),
+          ),
         ),
-        decoration: InputDecoration(
-          labelText: "Down Payment",
-          // hintText: "Down Payment",
-          // prefixIcon: Icon(CupertinoIcons.money_dollar, color: Colors.black38),
-          labelStyle: TextStyle(color: Colors.black38),
-          border: InputBorder.none,
+      ],
+    );
+  }
+}
+
+class DownPaymentInUSD extends StatelessWidget {
+  const DownPaymentInUSD({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            // margin: EdgeInsets.only(left: 8, right: 8, bottom: 8),
+            margin: EdgeInsets.fromLTRB(8, 0, 8, 0),
+            padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+            decoration: BoxDecoration(
+              color: Color(0xffD9DBFB),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: TextField(
+              style: TextStyle(
+                color: Colors.black,
+              ),
+              decoration: InputDecoration(
+                labelText: "Down Payment in USD",
+                // hintText: "Down Payment",
+                // prefixIcon: Icon(CupertinoIcons.money_dollar, color: Colors.black38),
+                labelStyle: TextStyle(color: Colors.black38),
+                border: InputBorder.none,
+              ),
+              onEditingComplete: () {
+                // context.read<StaffSearchBloc>()..add(SearchStaff());
+                // FocusScopeNode currentFocus = FocusScope.of(context);
+                //
+                // if (!currentFocus.hasPrimaryFocus) {
+                //   currentFocus.unfocus();
+                // }
+              },
+              // onChanged: (value) => context.read<StaffSearchBloc>()..add(SetStaffSearchKeyword(value)),
+              keyboardType: TextInputType.number,
+            ),
+          ),
         ),
-        onEditingComplete: () {
-          // context.read<StaffSearchBloc>()..add(SearchStaff());
-          // FocusScopeNode currentFocus = FocusScope.of(context);
-          //
-          // if (!currentFocus.hasPrimaryFocus) {
-          //   currentFocus.unfocus();
-          // }
-        },
-        // onChanged: (value) => context.read<StaffSearchBloc>()..add(SetStaffSearchKeyword(value)),
-        keyboardType: TextInputType.number,
-      ),
+      ],
     );
   }
 }
