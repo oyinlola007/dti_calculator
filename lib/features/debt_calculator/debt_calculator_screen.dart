@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class DebtCalculatorScreen extends StatefulWidget {
-  const DebtCalculatorScreen({Key? key}) : super(key: key);
+  final num monthlyIncome;
+  final num loanAmount;
+  const DebtCalculatorScreen({Key? key, required this.monthlyIncome, required this.loanAmount})
+      : super(key: key);
 
   @override
   _DebtCalculatorScreenState createState() => _DebtCalculatorScreenState();

@@ -1,5 +1,6 @@
 import 'package:dti_calculator/features/income_calculator/widget/hourly_employee_widget.dart';
 import 'package:dti_calculator/core/widget/value_and_next_button_widget.dart';
+import 'package:dti_calculator/features/mortgage_ratio_calculator/student_loan/student_loan_screen.dart';
 import 'package:dti_calculator/res/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,18 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
                       : SalaryEmployeeWidget(),
                   MonthlyIncomeValueWidget(
                     title: "Your Monthly income is show below: ",
-                    value: state.monthlyIncome.toString(),
-                    onPressAction: onPressAction,
+                    value: 'USD ${state.monthlyIncome}',
+                    onPressAction: () {
+                      print("===> Monthly Income ${state.monthlyIncome}");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => StudentLoanScreen(
+                            monthlyIncome: state.monthlyIncome,
+                          ),
+                        ),
+                      );
+                    },
                   )
                 ],
               ),
@@ -62,9 +73,5 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
         },
       ),
     );
-  }
-
-  onPressAction() {
-    print("Pressed");
   }
 }
