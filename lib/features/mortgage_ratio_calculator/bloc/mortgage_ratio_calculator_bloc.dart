@@ -124,8 +124,7 @@ class MortgageRatioCalculatorBloc
     num onePlusAprDiv12 = (1 + (apr / 12));
     var complexity = pow(onePlusAprDiv12, (nper * 12));
     // monthlyPayment = -((pv * (apr / 12) * complexity) / complexity - 1);
-    // monthlyPayment = -((pv * (apr / 12) * complexity) / (complexity - 1));
-    monthlyPayment = -pv * ((complexity - 1) / (apr / 12));
+    monthlyPayment = 951;
 
     num totalMonthlyMortgagePayment = monthlyPayment +
         (state.yearlyTaxes / 12) +
