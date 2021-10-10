@@ -76,7 +76,7 @@ class MortgageRatioCalculatorBloc
   Stream<MortgageRatioCalculatorState> _mapUpdateInterestRateEventToState(
       UpdateInterestRate event) async* {
     num iR = event.interestRate / 100;
-    yield state.copyWith(termInYears: iR);
+    yield state.copyWith(interestRate: iR);
   }
 
   Stream<MortgageRatioCalculatorState> _mapUpdateTermInYearsEventToState(
@@ -124,6 +124,10 @@ class MortgageRatioCalculatorBloc
     num onePlusAprDiv12 = (1 + (apr / 12));
     var complexity = pow(onePlusAprDiv12, (nper * 12));
     // monthlyPayment = -((pv * (apr / 12) * complexity) / complexity - 1);
+    monthlyPayment = -((pv * (apr / 12) * complexity) / (complexity - 1));
+
+    // print(Finance.pmt(rate: 0.025 / 12, nper: 10 * 12, pv: 100000));
+
     monthlyPayment = 951;
 
     num totalMonthlyMortgagePayment = monthlyPayment +
@@ -145,6 +149,8 @@ class MortgageRatioCalculatorBloc
 
     print("===>totalMonthlyMortgagePayment $totalMonthlyMortgagePayment");
     print("===>monthlyPayment $monthlyPayment");
+
+    print("===>interestRate ${state.interestRate}");
 
     print("===>yearlyTaxes ${state.yearlyTaxes}");
     print("===>homeOwnerInsurance ${state.homeOwnerInsurance}");
