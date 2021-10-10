@@ -98,26 +98,26 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.deepPurple,
-                          ),
-                          onPressed: () {
-                            var encoder = JsonEncoder.withIndent('    ');
-                            print(encoder.convert(state.debtValues));
-                          },
-                          child: Text(
-                            "Print values",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Row(
+                  //     children: [
+                  //       TextButton(
+                  //         style: TextButton.styleFrom(
+                  //           backgroundColor: Colors.deepPurple,
+                  //         ),
+                  //         onPressed: () {
+                  //           var encoder = JsonEncoder.withIndent('    ');
+                  //           print(encoder.convert(state.debtValues));
+                  //         },
+                  //         child: Text(
+                  //           "Print values",
+                  //           style: TextStyle(color: Colors.white),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 22,
                   ),

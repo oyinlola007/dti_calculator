@@ -130,12 +130,15 @@ class MortgageRatioCalculatorBloc
         (state.monthlyMortgageInsurance) +
         (state.hOAMonthlyPayment);
 
-    num fER = totalMonthlyMortgagePayment / state.monthlyIncome;
+    num fER = (totalMonthlyMortgagePayment / state.monthlyIncome) * 100;
     num bER =
-        (totalMonthlyMortgagePayment + state.totalDebt + state.loanAmount) / state.monthlyIncome;
+        ((totalMonthlyMortgagePayment + state.totalDebt + state.loanAmount) / state.monthlyIncome) *
+            100;
 
     yield state.copyWith(
-        frontEndRatio: fER, backEndRatio: bER, totalMortgagePayment: totalMonthlyMortgagePayment);
+        frontEndRatio: double.parse((fER).toStringAsFixed(6)),
+        backEndRatio: double.parse((bER).toStringAsFixed(6)),
+        totalMortgagePayment: double.parse((totalMonthlyMortgagePayment).toStringAsFixed(2)));
 
     print("===>monthlyPayment $monthlyPayment");
     print("===>fER $fER");

@@ -96,16 +96,20 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                       ),
                       onPressed: () {
                         ctx.read<MortgageRatioCalculatorBloc>()..add(ShowResult());
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CalculationResultScreen(
-                              totalMortgagePayment: state.totalMortgagePayment,
-                              backEndRatio: state.backEndRatio,
-                              frontEndRatio: state.frontEndRatio,
+
+                        Future.delayed(Duration(seconds: 2), () {
+                          // Do something
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CalculationResultScreen(
+                                totalMortgagePayment: state.totalMortgagePayment,
+                                backEndRatio: state.backEndRatio,
+                                frontEndRatio: state.frontEndRatio,
+                              ),
                             ),
-                          ),
-                        );
+                          );
+                        });
                       },
                     ),
                   ),

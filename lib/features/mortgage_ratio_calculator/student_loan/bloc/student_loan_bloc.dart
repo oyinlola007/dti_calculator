@@ -32,6 +32,6 @@ class StudentLoanBloc extends Bloc<StudentLoanEvent, StudentLoanState> {
   Stream<StudentLoanState> _mapUpdateStudentLoanValueEventToState(
       UpdateStudentLoanValue event) async* {
     num debt = event.studentLoanValue * 0.005;
-    yield state.copyWith(loanAmount: debt);
+    yield state.copyWith(loanAmount: double.parse((debt).toStringAsFixed(2)));
   }
 }

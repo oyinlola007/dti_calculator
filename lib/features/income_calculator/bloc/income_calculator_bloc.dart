@@ -61,21 +61,24 @@ class IncomeCalculatorBloc extends Bloc<IncomeCalculatorEvent, IncomeCalculatorS
   Stream<IncomeCalculatorState> _mapUpdateIncomePerHourEventToState(
       UpdateIncomePerHour event) async* {
     var incomePerMonth = event.incomePerHour * state.numberOfHoursPerWeek;
-    yield state.copyWith(incomePerHour: event.incomePerHour, monthlyIncome: incomePerMonth);
+    yield state.copyWith(
+        incomePerHour: event.incomePerHour,
+        monthlyIncome: double.parse((incomePerMonth).toStringAsFixed(2)));
   }
 
   Stream<IncomeCalculatorState> _mapUpdateNumberOfHoursPerWeekEventToState(
       UpdateNumberOfHoursPerWeek event) async* {
     var incomePerMonth = state.incomePerHour * event.numberOfHoursPerWeek;
     yield state.copyWith(
-        numberOfHoursPerWeek: event.numberOfHoursPerWeek, monthlyIncome: incomePerMonth);
+        numberOfHoursPerWeek: event.numberOfHoursPerWeek,
+        monthlyIncome: double.parse((incomePerMonth).toStringAsFixed(2)));
   }
 
   Stream<IncomeCalculatorState> _mapUpdatePayPerMonthEventToState(UpdatePayPerMonth event) async* {
     yield state.copyWith(payPerMonth: event.payPerMonth);
     if (event.payPerMonth != 0) {
       var incomePerMonth = event.payPerMonth;
-      yield state.copyWith(monthlyIncome: incomePerMonth);
+      yield state.copyWith(monthlyIncome: double.parse((incomePerMonth).toStringAsFixed(2)));
     }
   }
 
@@ -85,7 +88,7 @@ class IncomeCalculatorBloc extends Bloc<IncomeCalculatorEvent, IncomeCalculatorS
 
     if (event.payTwicePerMonth != 0) {
       var incomePerMonth = (event.payTwicePerMonth * 24) / 12;
-      yield state.copyWith(monthlyIncome: incomePerMonth);
+      yield state.copyWith(monthlyIncome: double.parse((incomePerMonth).toStringAsFixed(2)));
     }
   }
 
@@ -94,7 +97,7 @@ class IncomeCalculatorBloc extends Bloc<IncomeCalculatorEvent, IncomeCalculatorS
     yield state.copyWith(payTwiceAWeekYouGetExtra: event.payTwiceAWeekYouGetExtra);
     if (event.payTwiceAWeekYouGetExtra != 0) {
       var incomePerMonth = (event.payTwiceAWeekYouGetExtra * 26) / 12;
-      yield state.copyWith(monthlyIncome: incomePerMonth);
+      yield state.copyWith(monthlyIncome: double.parse((incomePerMonth).toStringAsFixed(2)));
     }
   }
 
@@ -102,7 +105,7 @@ class IncomeCalculatorBloc extends Bloc<IncomeCalculatorEvent, IncomeCalculatorS
     yield state.copyWith(payWeekly: event.payWeekly);
     if (event.payWeekly != 0) {
       var incomePerMonth = (event.payWeekly * 52) / 12;
-      yield state.copyWith(monthlyIncome: incomePerMonth);
+      yield state.copyWith(monthlyIncome: double.parse((incomePerMonth).toStringAsFixed(2)));
     }
   }
 

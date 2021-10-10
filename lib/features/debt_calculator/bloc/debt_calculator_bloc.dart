@@ -70,7 +70,8 @@ class DebtCalculatorBloc extends Bloc<DebtCalculatorEvent, DebtCalculatorState> 
 
     num totalDebt = calculateTotalDebt(values);
 
-    yield state.copyWith(debtValues: values, totalDebt: totalDebt);
+    yield state.copyWith(
+        debtValues: values, totalDebt: double.parse((totalDebt).toStringAsFixed(2)));
   }
 
   num calculateTotalDebt(List<Map<String, num>> values) {
