@@ -145,6 +145,10 @@ class MortgageRatioCalculatorBloc
     print("===>totalMonthlyMortgagePayment $totalMonthlyMortgagePayment");
     print("===>monthlyPayment $monthlyPayment");
 
+    print("===>yearlyTaxes ${state.yearlyTaxes}");
+    print("===>homeOwnerInsurance ${state.homeOwnerInsurance}");
+    print("===>mortgageInsurance ${state.mortgageInsurance}");
+
     print("===>fER $fER");
     print("===>bER $bER");
   }
