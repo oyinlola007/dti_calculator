@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class OtherPaymentsScreen extends StatefulWidget {
-  const OtherPaymentsScreen({Key? key}) : super(key: key);
+  final num monthlyIncome;
+  final num loanAmount;
+  final num totalDebt;
+  const OtherPaymentsScreen(
+      {Key? key, required this.monthlyIncome, required this.loanAmount, required this.totalDebt})
+      : super(key: key);
 
   @override
   _OtherPaymentsScreenState createState() => _OtherPaymentsScreenState();

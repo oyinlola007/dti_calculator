@@ -6,22 +6,25 @@ abstract class DebtCalculatorEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class UpdateEmployeeType extends DebtCalculatorEvent {
-  final String employeeType;
+class AddNewField extends DebtCalculatorEvent {}
 
-  const UpdateEmployeeType(this.employeeType);
+class DeleteField extends DebtCalculatorEvent {
+  final int index;
+
+  const DeleteField(this.index);
 
   @override
-  List<Object> get props => [employeeType];
+  List<Object> get props => [index];
 }
 
-class UpdateSalaryType extends DebtCalculatorEvent {
-  final String salaryType;
+class UpdateField extends DebtCalculatorEvent {
+  final int index;
+  final num value;
 
-  const UpdateSalaryType(this.salaryType);
+  const UpdateField(this.index, this.value);
 
   @override
-  List<Object> get props => [salaryType];
+  List<Object> get props => [index, value];
 }
 
 class Reset extends DebtCalculatorEvent {}
