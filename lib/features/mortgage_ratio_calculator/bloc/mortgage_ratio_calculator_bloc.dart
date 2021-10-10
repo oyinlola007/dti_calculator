@@ -38,11 +38,11 @@ class MortgageRatioCalculatorBloc
       yield* _mapUpdateYearlyTaxesEventToState(event);
     }
 
-    if (event is UpdateYearlyInsurance) {
+    if (event is UpdateHomeOwnerInsurance) {
       yield* _mapUpdateYearlyInsuranceEventToState(event);
     }
 
-    if (event is UpdateMonthlyMortgageInsurance) {
+    if (event is UpdateMortgageInsurance) {
       yield* _mapUpdateMonthlyMortgageInsuranceEventToState(event);
     }
 
@@ -99,13 +99,13 @@ class MortgageRatioCalculatorBloc
   }
 
   Stream<MortgageRatioCalculatorState> _mapUpdateYearlyInsuranceEventToState(
-      UpdateYearlyInsurance event) async* {
-    yield state.copyWith(yearlyInsurance: event.yearlyInsurance);
+      UpdateHomeOwnerInsurance event) async* {
+    yield state.copyWith(homeOwnerInsurance: event.homeOwnerInsurance);
   }
 
   Stream<MortgageRatioCalculatorState> _mapUpdateMonthlyMortgageInsuranceEventToState(
-      UpdateMonthlyMortgageInsurance event) async* {
-    yield state.copyWith(monthlyMortgageInsurance: event.monthlyMortgageInsurance);
+      UpdateMortgageInsurance event) async* {
+    yield state.copyWith(mortgageInsurance: event.mortgageInsurance);
   }
 
   Stream<MortgageRatioCalculatorState> _mapUpdateHOAMonthlyPaymentEventToState(
@@ -144,10 +144,4 @@ class MortgageRatioCalculatorBloc
     print("===>fER $fER");
     print("===>bER $bER");
   }
-
-// Stream<MortgageRatioCalculatorState> _mapResetEventToState() async* {
-//   // Todo Confirm if this works
-//   // Note do not reset on page destroy
-//   yield MortgageRatioCalculatorState();
-// }
 }

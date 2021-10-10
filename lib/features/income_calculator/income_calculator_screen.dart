@@ -53,7 +53,7 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
                       : SalaryEmployeeWidget(),
                   MonthlyIncomeValueWidget(
                     title: "Your Monthly income is show below: ",
-                    value: 'USD ${state.monthlyIncome}',
+                    value: 'USD ${double.parse((state.monthlyIncome).toStringAsFixed(2))}',
                     onPressAction: () {
                       print("===> Monthly Income ${state.monthlyIncome}");
                       Navigator.push(

@@ -63,22 +63,22 @@ class UpdateYearlyTaxes extends MortgageRatioCalculatorEvent {
   List<Object> get props => [yearlyTaxes];
 }
 
-class UpdateYearlyInsurance extends MortgageRatioCalculatorEvent {
-  final num yearlyInsurance;
+class UpdateHomeOwnerInsurance extends MortgageRatioCalculatorEvent {
+  final num homeOwnerInsurance;
 
-  const UpdateYearlyInsurance(this.yearlyInsurance);
+  const UpdateHomeOwnerInsurance(this.homeOwnerInsurance);
 
   @override
-  List<Object> get props => [yearlyInsurance];
+  List<Object> get props => [homeOwnerInsurance];
 }
 
-class UpdateMonthlyMortgageInsurance extends MortgageRatioCalculatorEvent {
-  final num monthlyMortgageInsurance;
+class UpdateMortgageInsurance extends MortgageRatioCalculatorEvent {
+  final num mortgageInsurance;
 
-  const UpdateMonthlyMortgageInsurance(this.monthlyMortgageInsurance);
+  const UpdateMortgageInsurance(this.mortgageInsurance);
 
   @override
-  List<Object> get props => [monthlyMortgageInsurance];
+  List<Object> get props => [mortgageInsurance];
 }
 
 class UpdateHOAMonthlyPayment extends MortgageRatioCalculatorEvent {

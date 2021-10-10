@@ -32,88 +32,99 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
               monthlyIncome: widget.monthlyIncome,
               loanAmount: widget.loanAmount,
               totalDebt: widget.totalDebt));
-        return Scaffold(
-          appBar: AppBar(
-            title: Text("Payments"),
-            centerTitle: true,
-            // backgroundColor: AppColors.primaryColor,
-          ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SalesPriceOfHome(formatter: formatter),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  InterestRate(),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  TermInYears(),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  DownPaymentInUSD(formatter: formatter),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  DownPaymentInPercentage(),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  Divider(),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  YearlyTaxes(formatter: formatter),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  YearlyInsurance(formatter: formatter),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  MonthlyMortgageInsurance(formatter: formatter),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  HOAMonthlyPayment(formatter: formatter),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                      child: Text(
-                        'Show Result',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        ctx.read<MortgageRatioCalculatorBloc>()..add(ShowResult());
-
-                        Future.delayed(Duration(seconds: 2), () {
-                          // Do something
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CalculationResultScreen(
-                                totalMortgagePayment: state.totalMortgagePayment,
-                                backEndRatio: state.backEndRatio,
-                                frontEndRatio: state.frontEndRatio,
-                              ),
-                            ),
-                          );
-                        });
-                      },
+        return BlocListener<MortgageRatioCalculatorBloc, MortgageRatioCalculatorState>(
+          listener: (context, state) {
+            if (state.showResult) {}
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text("Payments"),
+              centerTitle: true,
+              // backgroundColor: AppColors.primaryColor,
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SalesPriceOfHome(formatter: formatter),
+                    SizedBox(
+                      height: 18,
                     ),
-                  ),
-                ],
+                    InterestRate(),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    TermInYears(),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    DownPaymentInUSD(formatter: formatter),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    DownPaymentInPercentage(),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    YearlyTaxes(formatter: formatter),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    HomeOwnerInsurance(formatter: formatter),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    MortgageInsurance(formatter: formatter),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    HOAMonthlyPayment(formatter: formatter),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                        child: Text(
+                          'Show Result',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        onPressed: () async {
+                          ctx.read<MortgageRatioCalculatorBloc>().add(ShowResult());
+
+                          var totalMortgagePayment = state.totalMortgagePayment;
+                          var backEndRatio = state.backEndRatio;
+                          var frontEndRatio = state.frontEndRatio;
+
+                          Future.delayed(
+                            Duration(seconds: 2),
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CalculationResultScreen(
+                                    totalMortgagePayment: totalMortgagePayment,
+                                    backEndRatio: backEndRatio,
+                                    frontEndRatio: frontEndRatio,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -410,10 +421,10 @@ class YearlyTaxes extends StatelessWidget {
   }
 }
 
-class YearlyInsurance extends StatelessWidget {
+class HomeOwnerInsurance extends StatelessWidget {
   final CurrencyTextInputFormatter formatter;
 
-  const YearlyInsurance({Key? key, required this.formatter}) : super(key: key);
+  const HomeOwnerInsurance({Key? key, required this.formatter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -432,7 +443,7 @@ class YearlyInsurance extends StatelessWidget {
               color: Colors.black,
             ),
             decoration: InputDecoration(
-              labelText: "Yearly Insurance",
+              labelText: "Home Owner Insurance",
               // prefixIcon: Icon(CupertinoIcons.money_dollar, color: Colors.black38),
               // hintStyle: TextStyle(color: Color(0xff797CC0)),
               labelStyle: TextStyle(color: Colors.black38),
@@ -445,7 +456,7 @@ class YearlyInsurance extends StatelessWidget {
               }
             },
             onChanged: (value) => context.read<MortgageRatioCalculatorBloc>()
-              ..add(UpdateYearlyInsurance(formatter.getUnformattedValue())),
+              ..add(UpdateHomeOwnerInsurance(formatter.getUnformattedValue())),
             inputFormatters: <TextInputFormatter>[
               formatter,
             ],
@@ -457,10 +468,10 @@ class YearlyInsurance extends StatelessWidget {
   }
 }
 
-class MonthlyMortgageInsurance extends StatelessWidget {
+class MortgageInsurance extends StatelessWidget {
   final CurrencyTextInputFormatter formatter;
 
-  const MonthlyMortgageInsurance({Key? key, required this.formatter}) : super(key: key);
+  const MortgageInsurance({Key? key, required this.formatter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -492,7 +503,7 @@ class MonthlyMortgageInsurance extends StatelessWidget {
               }
             },
             onChanged: (value) => context.read<MortgageRatioCalculatorBloc>()
-              ..add(UpdateMonthlyMortgageInsurance(formatter.getUnformattedValue())),
+              ..add(UpdateMortgageInsurance(formatter.getUnformattedValue())),
             inputFormatters: <TextInputFormatter>[
               formatter,
             ],

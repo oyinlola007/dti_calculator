@@ -2,6 +2,7 @@ part of 'mortgage_ratio_calculator_bloc.dart';
 
 class MortgageRatioCalculatorState extends Equatable {
   MortgageRatioCalculatorState({
+    this.showResult = false,
     this.monthlyIncome = 0,
     this.loanAmount = 0,
     this.totalDebt = 0,
@@ -19,6 +20,8 @@ class MortgageRatioCalculatorState extends Equatable {
     this.frontEndRatio = 0,
     this.backEndRatio = 0,
   });
+
+  final bool showResult;
 
   // INCOME
   final num monthlyIncome;
@@ -48,6 +51,7 @@ class MortgageRatioCalculatorState extends Equatable {
   final num backEndRatio;
 
   MortgageRatioCalculatorState copyWith({
+    bool? showResult,
     // INCOME
     num? monthlyIncome,
     // LOAN
@@ -61,8 +65,8 @@ class MortgageRatioCalculatorState extends Equatable {
     num? downPaymentInPercentage,
     num? downPayment,
     num? yearlyTaxes,
-    num? yearlyInsurance,
-    num? monthlyMortgageInsurance,
+    num? homeOwnerInsurance,
+    num? mortgageInsurance,
     num? hOAMonthlyPayment,
     // Result
     num? totalMortgagePayment,
@@ -71,6 +75,7 @@ class MortgageRatioCalculatorState extends Equatable {
     num? backEndRatio,
   }) {
     return MortgageRatioCalculatorState(
+      showResult: showResult ?? this.showResult,
       monthlyIncome: monthlyIncome ?? this.monthlyIncome,
       // LOAN
 
@@ -86,8 +91,8 @@ class MortgageRatioCalculatorState extends Equatable {
       downPaymentInPercentage: downPaymentInPercentage ?? this.downPaymentInPercentage,
       downPayment: downPayment ?? this.downPayment,
       yearlyTaxes: yearlyTaxes ?? this.yearlyTaxes,
-      yearlyInsurance: yearlyInsurance ?? this.yearlyInsurance,
-      monthlyMortgageInsurance: monthlyMortgageInsurance ?? this.monthlyMortgageInsurance,
+      yearlyInsurance: homeOwnerInsurance ?? this.yearlyInsurance,
+      monthlyMortgageInsurance: mortgageInsurance ?? this.monthlyMortgageInsurance,
       hOAMonthlyPayment: hOAMonthlyPayment ?? this.hOAMonthlyPayment,
       // Result
 
@@ -101,6 +106,7 @@ class MortgageRatioCalculatorState extends Equatable {
 
   @override
   List<Object> get props => [
+        showResult,
         monthlyIncome,
         loanAmount,
         totalDebt,
