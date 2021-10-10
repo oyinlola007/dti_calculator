@@ -60,7 +60,7 @@ class IncomeCalculatorBloc extends Bloc<IncomeCalculatorEvent, IncomeCalculatorS
 
   Stream<IncomeCalculatorState> _mapUpdateIncomePerHourEventToState(
       UpdateIncomePerHour event) async* {
-    var incomePerMonth = event.incomePerHour * state.numberOfHoursPerWeek;
+    var incomePerMonth = (event.incomePerHour * state.numberOfHoursPerWeek * 52) / 12;
     yield state.copyWith(
         incomePerHour: event.incomePerHour,
         monthlyIncome: double.parse((incomePerMonth).toStringAsFixed(2)));
@@ -68,7 +68,7 @@ class IncomeCalculatorBloc extends Bloc<IncomeCalculatorEvent, IncomeCalculatorS
 
   Stream<IncomeCalculatorState> _mapUpdateNumberOfHoursPerWeekEventToState(
       UpdateNumberOfHoursPerWeek event) async* {
-    var incomePerMonth = state.incomePerHour * event.numberOfHoursPerWeek;
+    var incomePerMonth = (state.incomePerHour * event.numberOfHoursPerWeek * 52) / 12;
     yield state.copyWith(
         numberOfHoursPerWeek: event.numberOfHoursPerWeek,
         monthlyIncome: double.parse((incomePerMonth).toStringAsFixed(2)));
