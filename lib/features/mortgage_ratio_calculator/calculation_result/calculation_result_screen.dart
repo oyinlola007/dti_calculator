@@ -2,7 +2,17 @@ import 'package:dti_calculator/features/mortgage_ratio_calculator/calculation_re
 import 'package:flutter/material.dart';
 
 class CalculationResultScreen extends StatefulWidget {
-  const CalculationResultScreen({Key? key}) : super(key: key);
+  final num totalMortgagePayment;
+  // final num principalInterestOnlyPayment;
+  final num frontEndRatio;
+  final num backEndRatio;
+  const CalculationResultScreen(
+      {Key? key,
+      required this.totalMortgagePayment,
+      // required this.principalInterestOnlyPayment,
+      required this.frontEndRatio,
+      required this.backEndRatio})
+      : super(key: key);
 
   @override
   _CalculationResultScreenState createState() => _CalculationResultScreenState();
@@ -21,34 +31,34 @@ class _CalculationResultScreenState extends State<CalculationResultScreen> {
         child: Column(
           children: [
             CalculationResultItemWidget(
-              title: 'Total Mortgage Payment',
-              value: "USD 1,000",
+              title: 'Total Monthly Mortgage Payment',
+              value: "USD ${widget.totalMortgagePayment}",
             ),
-            CalculationResultItemWidget(
-              title: 'Principal + Interest only Payment',
-              value: "USD 2,000",
-            ),
+            // CalculationResultItemWidget(
+            //   title: 'Principal + Interest only Payment',
+            //   value: "USD 2,000",
+            // ),
             CalculationResultItemWidget(
               title: 'Front End Ratio',
-              value: "36%",
+              value: "${widget.frontEndRatio}%",
             ),
             CalculationResultItemWidget(
               title: 'Back End Ratio',
-              value: "51%",
+              value: "${widget.backEndRatio}%",
             ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                child: Text(
-                  'Done',
-                  style: TextStyle(fontSize: 20),
-                ),
-                onPressed: () {},
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8),
+            //   child: ElevatedButton(
+            //     style: ElevatedButton.styleFrom(
+            //         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+            //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+            //     child: Text(
+            //       'Done',
+            //       style: TextStyle(fontSize: 20),
+            //     ),
+            //     onPressed: () {},
+            //   ),
+            // ),
           ],
         ),
       ),

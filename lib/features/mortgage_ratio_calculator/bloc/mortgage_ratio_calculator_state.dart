@@ -8,6 +8,7 @@ class MortgageRatioCalculatorState extends Equatable {
     this.salesPriceOfHome = 0,
     this.interestRate = 0,
     this.termInYears = 0,
+    this.downPaymentInPercentage = 0,
     this.downPayment = 0,
     this.yearlyTaxes = 0,
     this.yearlyInsurance = 0,
@@ -32,6 +33,7 @@ class MortgageRatioCalculatorState extends Equatable {
   final num salesPriceOfHome;
   final num interestRate;
   final num termInYears;
+  final num downPaymentInPercentage;
   final num downPayment;
 
   final num yearlyTaxes;
@@ -56,6 +58,7 @@ class MortgageRatioCalculatorState extends Equatable {
     num? salesPriceOfHome,
     num? interestRate,
     num? termInYears,
+    num? downPaymentInPercentage,
     num? downPayment,
     num? yearlyTaxes,
     num? yearlyInsurance,
@@ -80,6 +83,7 @@ class MortgageRatioCalculatorState extends Equatable {
 
       interestRate: interestRate ?? this.interestRate,
       termInYears: termInYears ?? this.termInYears,
+      downPaymentInPercentage: downPaymentInPercentage ?? this.downPaymentInPercentage,
       downPayment: downPayment ?? this.downPayment,
       yearlyTaxes: yearlyTaxes ?? this.yearlyTaxes,
       yearlyInsurance: yearlyInsurance ?? this.yearlyInsurance,
@@ -103,6 +107,7 @@ class MortgageRatioCalculatorState extends Equatable {
         salesPriceOfHome,
         interestRate,
         termInYears,
+        downPaymentInPercentage,
         downPayment,
         yearlyTaxes,
         yearlyInsurance,

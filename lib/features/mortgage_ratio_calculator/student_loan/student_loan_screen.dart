@@ -148,7 +148,7 @@ class _StudentLoanScreenState extends State<StudentLoanScreen> {
                     height: 22,
                   ),
                   MonthlyIncomeValueWidget(
-                    title: "Total Loan Amount is show below: ",
+                    title: "Debt Estimate ",
                     value: 'USD ${state.loanAmount}',
                     onPressAction: () {
                       print("===> Monthly Income ${widget.monthlyIncome}");

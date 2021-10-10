@@ -39,7 +39,7 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
                     height: 16,
                   ),
                   DropdownButtonWidget(
-                    Strings.hourlyEmployee,
+                    state.employeeType,
                     (String newValue) {
                       context.read<IncomeCalculatorBloc>().add(UpdateEmployeeType(newValue));
                     },

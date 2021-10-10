@@ -1,6 +1,7 @@
 import 'package:dti_calculator/di/components/service_locator.dart';
 import 'package:dti_calculator/features/debt_calculator/bloc/debt_calculator_bloc.dart';
 import 'package:dti_calculator/features/income_calculator/bloc/income_calculator_bloc.dart';
+import 'package:dti_calculator/features/mortgage_ratio_calculator/bloc/mortgage_ratio_calculator_bloc.dart';
 import 'package:dti_calculator/features/mortgage_ratio_calculator/student_loan/bloc/student_loan_bloc.dart';
 import 'package:dti_calculator/routing/navigation_service.dart';
 import 'package:dti_calculator/routing/page_route_constants.dart';
@@ -35,6 +36,11 @@ class App extends StatelessWidget {
         BlocProvider<DebtCalculatorBloc>(
           create: (context) {
             return DebtCalculatorBloc();
+          },
+        ),
+        BlocProvider<MortgageRatioCalculatorBloc>(
+          create: (context) {
+            return MortgageRatioCalculatorBloc();
           },
         ),
       ],

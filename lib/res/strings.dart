@@ -7,7 +7,7 @@ class Strings {
   static const hourlyEmployee = "Hourly Employee";
   static const monthlyEmployee = "Monthly Employee";
 
-  static const paidPerMonth = "Paid Per Month'";
+  static const paidPerMonth = "Paid Per Month";
   static const paidTwicePerMonth = "Paid Twice Per Month";
   static const paidTwicePerWeekYouGetAnExtraPay =
       "Paid Twice per Week (you get an extra pay check twice a year)";
