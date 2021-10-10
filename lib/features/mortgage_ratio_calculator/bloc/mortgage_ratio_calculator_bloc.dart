@@ -137,6 +137,7 @@ class MortgageRatioCalculatorBloc
             100;
 
     yield state.copyWith(
+        monthlyPayment: monthlyPayment,
         frontEndRatio: double.parse((fER).toStringAsFixed(6)),
         backEndRatio: double.parse((bER).toStringAsFixed(6)),
         totalMortgagePayment: double.parse((totalMonthlyMortgagePayment).toStringAsFixed(2)));

@@ -16,7 +16,7 @@ class MortgageRatioCalculatorState extends Equatable {
     this.mortgageInsurance = 0,
     this.hOAMonthlyPayment = 0,
     this.totalMortgagePayment = 0,
-    this.principalInterestOnlyPayment = 0,
+    this.monthlyPayment = 0,
     this.frontEndRatio = 0,
     this.backEndRatio = 0,
   });
@@ -46,7 +46,7 @@ class MortgageRatioCalculatorState extends Equatable {
 
   // Result
   final num totalMortgagePayment;
-  final num principalInterestOnlyPayment;
+  final num monthlyPayment;
   final num frontEndRatio;
   final num backEndRatio;
 
@@ -70,7 +70,7 @@ class MortgageRatioCalculatorState extends Equatable {
     num? hOAMonthlyPayment,
     // Result
     num? totalMortgagePayment,
-    num? principalInterestOnlyPayment,
+    num? monthlyPayment,
     num? frontEndRatio,
     num? backEndRatio,
   }) {
@@ -97,8 +97,7 @@ class MortgageRatioCalculatorState extends Equatable {
       // Result
 
       totalMortgagePayment: totalMortgagePayment ?? this.totalMortgagePayment,
-      principalInterestOnlyPayment:
-          principalInterestOnlyPayment ?? this.principalInterestOnlyPayment,
+      monthlyPayment: monthlyPayment ?? this.monthlyPayment,
       frontEndRatio: frontEndRatio ?? this.frontEndRatio,
       backEndRatio: backEndRatio ?? this.backEndRatio,
     );
@@ -120,7 +119,7 @@ class MortgageRatioCalculatorState extends Equatable {
         mortgageInsurance,
         hOAMonthlyPayment,
         totalMortgagePayment,
-        principalInterestOnlyPayment,
+        monthlyPayment,
         frontEndRatio,
         backEndRatio
       ];

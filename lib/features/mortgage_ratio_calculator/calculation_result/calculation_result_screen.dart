@@ -34,10 +34,10 @@ class CalculationResultScreen extends StatelessWidget {
                   title: 'Total Monthly Mortgage Payment',
                   value: "USD ${double.parse((state.totalMortgagePayment).toStringAsFixed(2))}",
                 ),
-                // CalculationResultItemWidget(
-                //   title: 'Principal + Interest only Payment',
-                //   value: "USD 2,000",
-                // ),
+                CalculationResultItemWidget(
+                  title: 'Monthly Payment',
+                  value: "USD ${double.parse((state.monthlyPayment).toStringAsFixed(2))}",
+                ),
                 CalculationResultItemWidget(
                   title: 'Front End Ratio',
                   value: "${double.parse((state.frontEndRatio).toStringAsFixed(2))}%",
