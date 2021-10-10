@@ -47,44 +47,6 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
                   SizedBox(
                     height: 16,
                   ),
-                  // Container(
-                  //   // margin: EdgeInsets.only(left: 8, right: 8, bottom: 8),
-                  //   margin: EdgeInsets.fromLTRB(8, 4, 8, 4),
-                  //   padding: EdgeInsets.fromLTRB(8, 4, 8, 4),
-                  //   decoration: BoxDecoration(
-                  //     color: Color(0xffD9DBFB),
-                  //     borderRadius: BorderRadius.circular(8),
-                  //   ),
-                  //   child: TextField(
-                  //     style: TextStyle(
-                  //       color: Color(0xff797CC0),
-                  //       fontSize: 18,
-                  //     ),
-                  //     decoration: InputDecoration(
-                  //       hintText: "Enter monthly salary ",
-                  //       // prefixIcon: Icon(CupertinoIcons.money_dollar, color: Colors.black),
-                  //       hintStyle: TextStyle(color: Color(0xff797CC0)),
-                  //       border: InputBorder.none,
-                  //     ),
-                  //     onEditingComplete: () {
-                  //       // context.read<StaffSearchBloc>()..add(SearchStaff());
-                  //       // FocusScopeNode currentFocus = FocusScope.of(context);
-                  //       //
-                  //       // if (!currentFocus.hasPrimaryFocus) {
-                  //       //   currentFocus.unfocus();
-                  //       // }
-                  //     },
-                  //     // onChanged: (value) => context.read<StaffSearchBloc>()..add(SetStaffSearchKeyword(value)),
-                  //
-                  //     inputFormatters: <TextInputFormatter>[
-                  //       CurrencyTextInputFormatter(
-                  //         decimalDigits: 0,
-                  //         locale: 'en',
-                  //       )
-                  //     ],
-                  //     keyboardType: TextInputType.number,
-                  //   ),
-                  // ),
                   state.employeeType == Strings.hourlyEmployee
                       ? HourlyEmployeeWidget()
                       : SalaryEmployeeWidget(),

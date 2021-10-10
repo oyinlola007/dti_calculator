@@ -60,26 +60,15 @@ class IncomeCalculatorBloc extends Bloc<IncomeCalculatorEvent, IncomeCalculatorS
 
   Stream<IncomeCalculatorState> _mapUpdateIncomePerHourEventToState(
       UpdateIncomePerHour event) async* {
-    yield state.copyWith(incomePerHour: event.incomePerHour);
-    if (event.incomePerHour != 0) {
-      yield state.copyWith(monthlyIncome: 0);
-      if (state.numberOfHoursPerWeek != 0) {
-        var incomePerMonth = (event.incomePerHour * state.incomePerHour);
-        yield state.copyWith(monthlyIncome: incomePerMonth);
-      }
-    }
+    var incomePerMonth = event.incomePerHour * state.numberOfHoursPerWeek;
+    yield state.copyWith(incomePerHour: event.incomePerHour, monthlyIncome: incomePerMonth);
   }
 
   Stream<IncomeCalculatorState> _mapUpdateNumberOfHoursPerWeekEventToState(
       UpdateNumberOfHoursPerWeek event) async* {
-    yield state.copyWith(numberOfHoursPerWeek: event.numberOfHoursPerWeek);
-    if (state.incomePerHour != 0) {
-      yield state.copyWith(monthlyIncome: 0);
-      if (event.numberOfHoursPerWeek != 0) {
-        var incomePerMonth = (event.numberOfHoursPerWeek * state.incomePerHour);
-        yield state.copyWith(monthlyIncome: incomePerMonth);
-      }
-    }
+    var incomePerMonth = state.incomePerHour * event.numberOfHoursPerWeek;
+    yield state.copyWith(
+        numberOfHoursPerWeek: event.numberOfHoursPerWeek, monthlyIncome: incomePerMonth);
   }
 
   Stream<IncomeCalculatorState> _mapUpdatePayPerMonthEventToState(UpdatePayPerMonth event) async* {

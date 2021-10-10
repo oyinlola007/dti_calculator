@@ -1,6 +1,7 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:dti_calculator/features/income_calculator/bloc/income_calculator_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HourlyEmployeeWidget extends StatefulWidget {
@@ -11,7 +12,8 @@ class HourlyEmployeeWidget extends StatefulWidget {
 }
 
 class _HourlyEmployeeWidgetState extends State<HourlyEmployeeWidget> {
-  final CurrencyTextInputFormatter formatter = CurrencyTextInputFormatter();
+  final CurrencyTextInputFormatter formatter =
+      CurrencyTextInputFormatter(decimalDigits: 0, locale: 'en');
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +51,15 @@ class _HourlyEmployeeWidgetState extends State<HourlyEmployeeWidget> {
                     }
                   },
                   onChanged: (value) {
-                    print("formatter.getUnformattedValue()");
-                    print(formatter.getUnformattedValue());
-                    context.read<IncomeCalculatorBloc>()
-                      ..add(UpdateIncomePerHour(formatter.getUnformattedValue()));
+                    if (value != "") {
+                      context
+                          .read<IncomeCalculatorBloc>()
+                          .add(UpdateIncomePerHour(formatter.getUnformattedValue()));
+                    }
                   },
+                  inputFormatters: <TextInputFormatter>[
+                    formatter,
+                  ],
                   keyboardType: TextInputType.number,
                 ),
               ),
@@ -85,8 +91,13 @@ class _HourlyEmployeeWidgetState extends State<HourlyEmployeeWidget> {
                       currentFocus.unfocus();
                     }
                   },
-                  onChanged: (value) => context.read<IncomeCalculatorBloc>()
-                    ..add(UpdateNumberOfHoursPerWeek(formatter.getUnformattedValue())),
+                  onChanged: (value) {
+                    if (value != "") {
+                      context
+                          .read<IncomeCalculatorBloc>()
+                          .add(UpdateNumberOfHoursPerWeek(num.parse(value)));
+                    }
+                  },
                   keyboardType: TextInputType.number,
                 ),
               ),

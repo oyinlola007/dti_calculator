@@ -22,8 +22,6 @@ class _SalaryEmployeeWidgetState extends State<SalaryEmployeeWidget> {
     Strings.paidWeekly,
   ];
 
-  final CurrencyTextInputFormatter formatter = CurrencyTextInputFormatter();
-
   final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter();
 
   @override
