@@ -64,7 +64,7 @@ class _DisclaimerScreenState extends State<DisclaimerScreen> {
                       title: Padding(
                         padding: EdgeInsets.all(0),
                         child: Text(
-                          'I Understand',
+                          'I Agree',
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
@@ -102,8 +102,9 @@ class _DisclaimerScreenState extends State<DisclaimerScreen> {
                                   if (acceptDisclaimer) {
                                     c.read<OnBoardingCubit>().completeOnBoarding();
                                   } else {
-                                    getIt<NavigationService>().navigateAndRemove(
-                                        PageRouteConstants.incomeCalculatorScreen);
+                                    // getIt<NavigationService>().navigateAndRemove(
+                                    //     PageRouteConstants.incomeCalculatorScreen);
+                                    Fluttertoast.showToast(msg: "You need to accept condition");
                                   }
                                 },
                               );

@@ -34,7 +34,7 @@ class _SalaryEmployeeWidgetState extends State<SalaryEmployeeWidget> {
               SizedBox(
                 height: 16,
               ),
-              DropdownButtonWidget(Strings.paidPerMonth, (String newValue) {
+              DropdownButtonWidget(state.salaryType, (String newValue) {
                 context.read<IncomeCalculatorBloc>().add(UpdateSalaryType(newValue));
               }, salaryTypes),
               SizedBox(

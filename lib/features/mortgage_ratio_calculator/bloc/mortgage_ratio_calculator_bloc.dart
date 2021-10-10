@@ -141,7 +141,9 @@ class MortgageRatioCalculatorBloc
         backEndRatio: double.parse((bER).toStringAsFixed(6)),
         totalMortgagePayment: double.parse((totalMonthlyMortgagePayment).toStringAsFixed(2)));
 
+    print("===>totalMonthlyMortgagePayment $totalMonthlyMortgagePayment");
     print("===>monthlyPayment $monthlyPayment");
+
     print("===>fER $fER");
     print("===>bER $bER");
   }
