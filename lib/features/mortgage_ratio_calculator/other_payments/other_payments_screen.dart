@@ -106,16 +106,16 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                           var frontEndRatio = state.frontEndRatio;
 
                           Future.delayed(
-                            Duration(seconds: 2),
+                            Duration(seconds: 1),
                             () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => CalculationResultScreen(
-                                    totalMortgagePayment: totalMortgagePayment,
-                                    backEndRatio: backEndRatio,
-                                    frontEndRatio: frontEndRatio,
-                                  ),
+                                      // totalMortgagePayment: totalMortgagePayment,
+                                      // backEndRatio: backEndRatio,
+                                      // frontEndRatio: frontEndRatio,
+                                      ),
                                 ),
                               );
                             },
@@ -313,7 +313,7 @@ class DownPaymentInPercentage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      'USD ${state.downPayment}',
+                      'USD ${double.parse((state.downPayment).toStringAsFixed(2))}',
                       style: TextStyle(fontSize: 18),
                       textAlign: TextAlign.center,
                     ),
@@ -490,7 +490,7 @@ class MortgageInsurance extends StatelessWidget {
               color: Colors.black,
             ),
             decoration: InputDecoration(
-              labelText: "Monthly Mortgage Insurance",
+              labelText: "Mortgage Insurance",
               // prefixIcon: Icon(CupertinoIcons.money_dollar, color: Colors.black38),
               // hintStyle: TextStyle(color: Color(0xff797CC0)),
               labelStyle: TextStyle(color: Colors.black38),

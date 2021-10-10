@@ -127,7 +127,8 @@ class MortgageRatioCalculatorBloc
 
     num totalMonthlyMortgagePayment = monthlyPayment +
         (state.yearlyTaxes / 12) +
-        (state.monthlyMortgageInsurance) +
+        (state.homeOwnerInsurance / 12) +
+        (state.mortgageInsurance) +
         (state.hOAMonthlyPayment);
 
     num fER = (totalMonthlyMortgagePayment / state.monthlyIncome) * 100;

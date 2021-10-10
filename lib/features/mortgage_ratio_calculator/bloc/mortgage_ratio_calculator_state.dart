@@ -12,8 +12,8 @@ class MortgageRatioCalculatorState extends Equatable {
     this.downPaymentInPercentage = 0,
     this.downPayment = 0,
     this.yearlyTaxes = 0,
-    this.yearlyInsurance = 0,
-    this.monthlyMortgageInsurance = 0,
+    this.homeOwnerInsurance = 0,
+    this.mortgageInsurance = 0,
     this.hOAMonthlyPayment = 0,
     this.totalMortgagePayment = 0,
     this.principalInterestOnlyPayment = 0,
@@ -40,8 +40,8 @@ class MortgageRatioCalculatorState extends Equatable {
   final num downPayment;
 
   final num yearlyTaxes;
-  final num yearlyInsurance;
-  final num monthlyMortgageInsurance;
+  final num homeOwnerInsurance;
+  final num mortgageInsurance;
   final num hOAMonthlyPayment;
 
   // Result
@@ -91,8 +91,8 @@ class MortgageRatioCalculatorState extends Equatable {
       downPaymentInPercentage: downPaymentInPercentage ?? this.downPaymentInPercentage,
       downPayment: downPayment ?? this.downPayment,
       yearlyTaxes: yearlyTaxes ?? this.yearlyTaxes,
-      yearlyInsurance: homeOwnerInsurance ?? this.yearlyInsurance,
-      monthlyMortgageInsurance: mortgageInsurance ?? this.monthlyMortgageInsurance,
+      homeOwnerInsurance: homeOwnerInsurance ?? this.homeOwnerInsurance,
+      mortgageInsurance: mortgageInsurance ?? this.mortgageInsurance,
       hOAMonthlyPayment: hOAMonthlyPayment ?? this.hOAMonthlyPayment,
       // Result
 
@@ -116,8 +116,8 @@ class MortgageRatioCalculatorState extends Equatable {
         downPaymentInPercentage,
         downPayment,
         yearlyTaxes,
-        yearlyInsurance,
-        monthlyMortgageInsurance,
+        homeOwnerInsurance,
+        mortgageInsurance,
         hOAMonthlyPayment,
         totalMortgagePayment,
         principalInterestOnlyPayment,

@@ -1,67 +1,69 @@
+import 'package:dti_calculator/features/mortgage_ratio_calculator/bloc/mortgage_ratio_calculator_bloc.dart';
 import 'package:dti_calculator/features/mortgage_ratio_calculator/calculation_result/widget/calculation_result_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CalculationResultScreen extends StatefulWidget {
-  final num totalMortgagePayment;
-  // final num principalInterestOnlyPayment;
-  final num frontEndRatio;
-  final num backEndRatio;
-  const CalculationResultScreen(
-      {Key? key,
-      required this.totalMortgagePayment,
-      // required this.principalInterestOnlyPayment,
-      required this.frontEndRatio,
-      required this.backEndRatio})
-      : super(key: key);
+class CalculationResultScreen extends StatelessWidget {
+  const CalculationResultScreen({
+    Key? key,
+    // required this.totalMortgagePayment,
+    // required this.frontEndRatio,
+    // required this.backEndRatio,
+  }) : super(key: key);
 
-  @override
-  _CalculationResultScreenState createState() => _CalculationResultScreenState();
-}
+  // final num totalMortgagePayment;
+  //
+  // // final num principalInterestOnlyPayment;
+  // final num frontEndRatio;
+  // final num backEndRatio;
 
-class _CalculationResultScreenState extends State<CalculationResultScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Result"),
-        centerTitle: true,
-        // backgroundColor: AppColors.primaryColor,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CalculationResultItemWidget(
-              title: 'Total Monthly Mortgage Payment',
-              value: "USD ${widget.totalMortgagePayment}",
+    return BlocBuilder<MortgageRatioCalculatorBloc, MortgageRatioCalculatorState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("Result"),
+            centerTitle: true,
+            // backgroundColor: AppColors.primaryColor,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                CalculationResultItemWidget(
+                  title: 'Total Monthly Mortgage Payment',
+                  value: "USD ${double.parse((state.totalMortgagePayment).toStringAsFixed(2))}",
+                ),
+                // CalculationResultItemWidget(
+                //   title: 'Principal + Interest only Payment',
+                //   value: "USD 2,000",
+                // ),
+                CalculationResultItemWidget(
+                  title: 'Front End Ratio',
+                  value: "${double.parse((state.frontEndRatio).toStringAsFixed(2))}%",
+                ),
+                CalculationResultItemWidget(
+                  title: 'Back End Ratio',
+                  value: "${double.parse((state.backEndRatio).toStringAsFixed(2))}%",
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8),
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                //     child: Text(
+                //       'Done',
+                //       style: TextStyle(fontSize: 20),
+                //     ),
+                //     onPressed: () {},
+                //   ),
+                // ),
+              ],
             ),
-            // CalculationResultItemWidget(
-            //   title: 'Principal + Interest only Payment',
-            //   value: "USD 2,000",
-            // ),
-            CalculationResultItemWidget(
-              title: 'Front End Ratio',
-              value: "${widget.frontEndRatio}%",
-            ),
-            CalculationResultItemWidget(
-              title: 'Back End Ratio',
-              value: "${widget.backEndRatio}%",
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8),
-            //   child: ElevatedButton(
-            //     style: ElevatedButton.styleFrom(
-            //         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-            //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-            //     child: Text(
-            //       'Done',
-            //       style: TextStyle(fontSize: 20),
-            //     ),
-            //     onPressed: () {},
-            //   ),
-            // ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
