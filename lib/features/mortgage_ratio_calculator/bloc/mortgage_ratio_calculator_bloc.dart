@@ -128,7 +128,7 @@ class MortgageRatioCalculatorBloc
 
     // print(Finance.pmt(rate: 0.025 / 12, nper: 10 * 12, pv: 100000));
 
-    monthlyPayment = 951;
+    // monthlyPayment = 951;
 
     num totalMonthlyMortgagePayment = monthlyPayment +
         (state.yearlyTaxes / 12) +
