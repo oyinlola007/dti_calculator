@@ -114,7 +114,7 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                     ),
                     HOAMonthlyPayment(
                       formatter: formatter,
-                      howMonthlyPaymentController: _hoaMonthlyPaymentController,
+                      hoaMonthlyPaymentController: _hoaMonthlyPaymentController,
                     ),
                     SizedBox(
                       height: 18,
@@ -123,6 +123,7 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                       padding: const EdgeInsets.all(8),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
                             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
                         child: Text(
@@ -148,7 +149,6 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                       padding: const EdgeInsets.all(8),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
                             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
                         child: Text(
@@ -562,6 +562,7 @@ class MortgageInsurance extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: mortgageController,
             style: TextStyle(
               color: Colors.black,
             ),
@@ -592,12 +593,12 @@ class MortgageInsurance extends StatelessWidget {
 }
 
 class HOAMonthlyPayment extends StatelessWidget {
-  final TextEditingController howMonthlyPaymentController;
+  final TextEditingController hoaMonthlyPaymentController;
 
   final CurrencyTextInputFormatter formatter;
 
   const HOAMonthlyPayment(
-      {Key? key, required this.formatter, required this.howMonthlyPaymentController})
+      {Key? key, required this.formatter, required this.hoaMonthlyPaymentController})
       : super(key: key);
 
   @override
@@ -613,7 +614,7 @@ class HOAMonthlyPayment extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
-            controller: howMonthlyPaymentController,
+            controller: hoaMonthlyPaymentController,
             style: TextStyle(
               color: Colors.black,
             ),

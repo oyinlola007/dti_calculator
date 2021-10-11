@@ -33,151 +33,154 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DebtCalculatorBloc, DebtCalculatorState>(
-      builder: (ctx, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text("Debt Calculation"),
-            centerTitle: true,
-            // backgroundColor: AppColors.primaryColor,
-          ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Text(
-                      "Total debt monthly payments on credit report",
-                      style: TextStyle(fontSize: 20),
-                      textAlign: TextAlign.center,
+    return BlocProvider(
+      create: (context) => DebtCalculatorBloc(),
+      child: BlocBuilder<DebtCalculatorBloc, DebtCalculatorState>(
+        builder: (ctx, state) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Debt Calculation"),
+              centerTitle: true,
+              // backgroundColor: AppColors.primaryColor,
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 16,
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.debtValues.length,
-                    itemBuilder: (context, index) {
-                      return _row(index, ctx);
-                    },
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextButton.icon(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.deepPurple,
-                            ),
-                            icon: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                ctx.read<DebtCalculatorBloc>().add(AddNewField());
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        "Total debt monthly payments on credit report",
+                        style: TextStyle(fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.debtValues.length,
+                      itemBuilder: (context, index) {
+                        return _row(index, ctx);
+                      },
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextButton.icon(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.deepPurple,
+                              ),
+                              icon: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  ctx.read<DebtCalculatorBloc>().add(AddNewField());
 
-                                // _values.add({
-                                //   "id": _values.length,
-                                //   "value": 0,
-                                // });
-                              });
-                            },
-                            label: Text(
-                              "Add New Field",
-                              style: TextStyle(color: Colors.white),
+                                  // _values.add({
+                                  //   "id": _values.length,
+                                  //   "value": 0,
+                                  // });
+                                });
+                              },
+                              label: Text(
+                                "Add New Field",
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: TextButton.icon(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.red,
-                            ),
-                            icon: Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                ctx.read<DebtCalculatorBloc>().add(Clear());
-                                // _values.add({
-                                //   "id": _values.length,
-                                //   "value": 0,
-                                // });
-                              });
-                            },
-                            label: Text(
-                              "Clear",
-                              style: TextStyle(color: Colors.white),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          Expanded(
+                            child: TextButton.icon(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.red,
+                              ),
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  ctx.read<DebtCalculatorBloc>().add(Clear());
+                                  // _values.add({
+                                  //   "id": _values.length,
+                                  //   "value": 0,
+                                  // });
+                                });
+                              },
+                              label: Text(
+                                "Clear",
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Row(
-                  //     children: [
-                  //       TextButton(
-                  //         style: TextButton.styleFrom(
-                  //           backgroundColor: Colors.deepPurple,
-                  //         ),
-                  //         onPressed: () {
-                  //           var encoder = JsonEncoder.withIndent('    ');
-                  //           print(encoder.convert(state.debtValues));
-                  //         },
-                  //         child: Text(
-                  //           "Print values",
-                  //           style: TextStyle(color: Colors.white),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  SizedBox(
-                    height: 22,
-                  ),
-                  MonthlyIncomeValueWidget(
-                    title: "Total Debt Amount is show below: ",
-                    value: '${NumberFormat.currency(name: 'USD ').format(state.totalDebt)}',
-                    onPressAction: () {
-                      print("===> Monthly Income ${widget.monthlyIncome}");
-                      print("===> Loan Amount ${widget.loanAmount}");
-                      print("===> Total Debt ${state.totalDebt}");
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OtherPaymentsScreen(
-                            monthlyIncome: widget.monthlyIncome,
-                            loanAmount: widget.loanAmount,
-                            totalDebt: state.totalDebt,
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: Row(
+                    //     children: [
+                    //       TextButton(
+                    //         style: TextButton.styleFrom(
+                    //           backgroundColor: Colors.deepPurple,
+                    //         ),
+                    //         onPressed: () {
+                    //           var encoder = JsonEncoder.withIndent('    ');
+                    //           print(encoder.convert(state.debtValues));
+                    //         },
+                    //         child: Text(
+                    //           "Print values",
+                    //           style: TextStyle(color: Colors.white),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 22,
+                    ),
+                    MonthlyIncomeValueWidget(
+                      title: "Total Debt Amount is show below: ",
+                      value: '${NumberFormat.currency(name: 'USD ').format(state.totalDebt)}',
+                      onPressAction: () {
+                        print("===> Monthly Income ${widget.monthlyIncome}");
+                        print("===> Loan Amount ${widget.loanAmount}");
+                        print("===> Total Debt ${state.totalDebt}");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OtherPaymentsScreen(
+                              monthlyIncome: widget.monthlyIncome,
+                              loanAmount: widget.loanAmount,
+                              totalDebt: state.totalDebt,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  )
-                ],
+                        );
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
@@ -249,25 +252,25 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
     );
   }
 
-  // _onUpdate(int index, String val) async {
-  //   int foundKey = -1;
-  //   for (var map in _values) {
-  //     if (map.containsKey("id")) {
-  //       if (map["id"] == index) {
-  //         foundKey = index;
-  //         break;
-  //       }
-  //     }
-  //   }
-  //   if (-1 != foundKey) {
-  //     _values.removeWhere((map) {
-  //       return map["id"] == foundKey;
-  //     });
-  //   }
-  //   Map<String, dynamic> json = {
-  //     "id": index,
-  //     "value": val,
-  //   };
-  //   _values.add(json);
-  // }
+// _onUpdate(int index, String val) async {
+//   int foundKey = -1;
+//   for (var map in _values) {
+//     if (map.containsKey("id")) {
+//       if (map["id"] == index) {
+//         foundKey = index;
+//         break;
+//       }
+//     }
+//   }
+//   if (-1 != foundKey) {
+//     _values.removeWhere((map) {
+//       return map["id"] == foundKey;
+//     });
+//   }
+//   Map<String, dynamic> json = {
+//     "id": index,
+//     "value": val,
+//   };
+//   _values.add(json);
+// }
 }

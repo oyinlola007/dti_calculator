@@ -1,5 +1,6 @@
 import 'package:dti_calculator/features/disclaimer/presentation/disclaimer_screen.dart';
 import 'package:dti_calculator/features/income_calculator/income_calculator_screen.dart';
+import 'package:dti_calculator/features/mortgage_ratio_calculator/calculation_result/calculation_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'page_route_constants.dart';
 
@@ -13,6 +14,15 @@ class ScreenRouter {
       case PageRouteConstants.incomeCalculatorScreen:
         return MaterialPageRoute(
           builder: (_) => IncomeCalculatorScreen(),
+        );
+
+      // static const String loanCalculatorScreen = '/loanCalculatorScreen';
+      // static const String debtCalculatorScreen = '/debtCalculatorScreen';
+      // static const String otherCalculationScreen = '/otherCalculationScreen';
+
+      case PageRouteConstants.calculationResultScreen:
+        return MaterialPageRoute(
+          builder: (_) => CalculationResultScreen(),
         );
       default:
         return MaterialPageRoute(
