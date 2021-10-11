@@ -50,10 +50,13 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
                   SizedBox(
                     height: 16,
                   ),
-                  Text(
-                    "Total Debt payment in credit report",
-                    style: TextStyle(fontSize: 20),
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      "Total debt monthly payments on credit report",
+                      style: TextStyle(fontSize: 20),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   SizedBox(
                     height: 16,
@@ -72,27 +75,56 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        TextButton.icon(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.deepPurple,
-                          ),
-                          icon: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              ctx.read<DebtCalculatorBloc>().add(AddNewField());
+                        Expanded(
+                          child: TextButton.icon(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.deepPurple,
+                            ),
+                            icon: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                ctx.read<DebtCalculatorBloc>().add(AddNewField());
 
-                              // _values.add({
-                              //   "id": _values.length,
-                              //   "value": 0,
-                              // });
-                            });
-                          },
-                          label: Text(
-                            "Add New Field",
-                            style: TextStyle(color: Colors.white),
+                                // _values.add({
+                                //   "id": _values.length,
+                                //   "value": 0,
+                                // });
+                              });
+                            },
+                            label: Text(
+                              "Add New Field",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: TextButton.icon(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.red,
+                            ),
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                ctx.read<DebtCalculatorBloc>().add(Clear());
+                                // _values.add({
+                                //   "id": _values.length,
+                                //   "value": 0,
+                                // });
+                              });
+                            },
+                            label: Text(
+                              "Clear",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ],
@@ -199,7 +231,7 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
           child: Visibility(
             visible: index == 0 ? false : true,
             child: IconButton(
-              icon: Icon(Icons.delete),
+              icon: Icon(Icons.close),
               onPressed: () {
                 ctx.read<DebtCalculatorBloc>().add(DeleteField(index));
                 //

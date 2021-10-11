@@ -12,8 +12,7 @@ class HourlyEmployeeWidget extends StatefulWidget {
 }
 
 class _HourlyEmployeeWidgetState extends State<HourlyEmployeeWidget> {
-  final CurrencyTextInputFormatter formatter =
-      CurrencyTextInputFormatter(decimalDigits: 0, locale: 'en');
+  final CurrencyTextInputFormatter formatter = CurrencyTextInputFormatter();
 
   @override
   Widget build(BuildContext context) {

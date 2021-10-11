@@ -24,4 +24,6 @@ class UpdateStudentLoanValue extends StudentLoanEvent {
   List<Object> get props => [studentLoanValue];
 }
 
+class ClearStudentLoan extends StudentLoanEvent {}
+
 class Reset extends StudentLoanEvent {}

@@ -21,8 +21,7 @@ class OtherPaymentsScreen extends StatefulWidget {
 }
 
 class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
-  final CurrencyTextInputFormatter formatter =
-      CurrencyTextInputFormatter(decimalDigits: 0, locale: 'en');
+  final CurrencyTextInputFormatter formatter = CurrencyTextInputFormatter();
 
   @override
   Widget build(BuildContext context) {

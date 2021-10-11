@@ -18,6 +18,10 @@ class StudentLoanBloc extends Bloc<StudentLoanEvent, StudentLoanState> {
     if (event is UpdateStudentLoanValue) {
       yield* _mapUpdateStudentLoanValueEventToState(event);
     }
+
+    if (event is ClearStudentLoan) {
+      yield* _mapClearStudentLoanEventToState(event);
+    }
   }
 
   Stream<StudentLoanState> _mapUpdateDoYouHaveStudentLoanEventToState(
@@ -33,5 +37,9 @@ class StudentLoanBloc extends Bloc<StudentLoanEvent, StudentLoanState> {
       UpdateStudentLoanValue event) async* {
     num debt = event.studentLoanValue * 0.005;
     yield state.copyWith(loanAmount: double.parse((debt).toStringAsFixed(2)));
+  }
+
+  Stream<StudentLoanState> _mapClearStudentLoanEventToState(ClearStudentLoan event) async* {
+    yield state.copyWith(loanAmount: 0);
   }
 }

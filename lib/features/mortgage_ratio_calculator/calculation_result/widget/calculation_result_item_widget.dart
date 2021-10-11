@@ -25,6 +25,7 @@ class _CalculationResultItemWidgetState extends State<CalculationResultItemWidge
           child: Text(
             widget.title,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
           ),
         ),
         Row(

@@ -36,8 +36,8 @@ class CalculationResultScreen extends StatelessWidget {
                   value: NumberFormat.currency(name: 'USD ').format(state.totalMortgagePayment),
                 ),
                 CalculationResultItemWidget(
-                  title: 'Monthly Payment',
-                  value: NumberFormat.currency(name: 'USD ').format(state.monthlyPayment),
+                  title: 'Monthly Principal and Interest Only Payments',
+                  value: "${NumberFormat.currency(name: 'USD ').format(state.monthlyPayment)}",
                 ),
                 CalculationResultItemWidget(
                   title: 'Front End Ratio',
