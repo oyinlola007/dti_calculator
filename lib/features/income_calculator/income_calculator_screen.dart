@@ -5,6 +5,7 @@ import 'package:dti_calculator/res/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import 'bloc/income_calculator_bloc.dart';
 import 'widget/drop_down_button_widget.dart';
@@ -53,7 +54,7 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
                       : SalaryEmployeeWidget(),
                   MonthlyIncomeValueWidget(
                     title: "Your Monthly income is show below: ",
-                    value: 'USD ${double.parse((state.monthlyIncome).toStringAsFixed(2))}',
+                    value: '${NumberFormat.currency(name: 'USD ').format(state.monthlyIncome)}',
                     onPressAction: () {
                       print("===> Monthly Income ${state.monthlyIncome}");
                       Navigator.push(
