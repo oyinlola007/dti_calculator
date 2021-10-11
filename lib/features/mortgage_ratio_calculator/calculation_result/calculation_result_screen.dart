@@ -36,7 +36,7 @@ class CalculationResultScreen extends StatelessWidget {
                   value: "USD ${double.parse((state.totalMortgagePayment).toStringAsFixed(2))}",
                 ),
                 CalculationResultItemWidget(
-                  title: 'Monthly Payment',
+                  title: 'Monthly Principal and Interest Only Payments',
                   value: "${NumberFormat.currency(name: 'USD ').format(state.monthlyPayment)}",
                 ),
                 CalculationResultItemWidget(

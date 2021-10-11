@@ -23,6 +23,10 @@ class DebtCalculatorBloc extends Bloc<DebtCalculatorEvent, DebtCalculatorState> 
     if (event is UpdateField) {
       yield* _mapUpdateFieldEventToState(event);
     }
+
+    if (event is Clear) {
+      yield* _mapClearEventToState(event);
+    }
   }
 
   Stream<DebtCalculatorState> _mapAddNewFieldEventToState() async* {
@@ -82,5 +86,15 @@ class DebtCalculatorBloc extends Bloc<DebtCalculatorEvent, DebtCalculatorState> 
     });
 
     return total;
+  }
+
+  Stream<DebtCalculatorState> _mapClearEventToState(Clear event) async* {
+    yield state.copyWith(totalDebt: 0, debtValues: []);
+    // yield state.copyWith(totalDebt: 0, debtValues: [
+    //   {
+    //     "id": 0,
+    //     "value": 0,
+    //   }
+    // ]);
   }
 }

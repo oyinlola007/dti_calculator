@@ -8,6 +8,8 @@ abstract class DebtCalculatorEvent extends Equatable {
 
 class AddNewField extends DebtCalculatorEvent {}
 
+class Clear extends DebtCalculatorEvent {}
+
 class DeleteField extends DebtCalculatorEvent {
   final int index;
 

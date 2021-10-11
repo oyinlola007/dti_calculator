@@ -1,6 +1,7 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:dti_calculator/core/widget/value_and_next_button_widget.dart';
 import 'package:dti_calculator/features/debt_calculator/debt_calculator_screen.dart';
+import 'package:dti_calculator/res/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,8 +18,7 @@ class StudentLoanScreen extends StatefulWidget {
 
 class _StudentLoanScreenState extends State<StudentLoanScreen> {
   // String selectedValue = "";
-  final CurrencyTextInputFormatter formatter =
-      CurrencyTextInputFormatter(decimalDigits: 0, locale: 'en');
+  final CurrencyTextInputFormatter formatter = CurrencyTextInputFormatter();
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +164,53 @@ class _StudentLoanScreenState extends State<StudentLoanScreen> {
                         ),
                       );
                     },
-                  )
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    "DISCLAIMER !",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20, color: Colors.red),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    Strings.loanDisclaimer,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                    child: Text(
+                      'Skip',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    onPressed: () {
+                      context.read<StudentLoanBloc>().add(ClearStudentLoan());
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DebtCalculatorScreen(
+                            monthlyIncome: widget.monthlyIncome,
+                            loanAmount: 0,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
                 ],
               ),
             ),
