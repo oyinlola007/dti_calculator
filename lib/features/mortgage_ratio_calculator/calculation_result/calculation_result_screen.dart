@@ -15,7 +15,7 @@ class CalculationResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MortgageRatioCalculatorBloc, MortgageRatioCalculatorState>(
-      builder: (context, state) {
+      builder: (ctx, state) {
         return Scaffold(
           appBar: AppBar(
             title: Text("Result"),
@@ -52,6 +52,7 @@ class CalculationResultScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () {
+                      ctx.read<MortgageRatioCalculatorBloc>().add(ClearMortgageRatioCalculator());
                       getIt<NavigationService>()
                           .navigateAndRemove(PageRouteConstants.incomeCalculatorScreen);
                     },
