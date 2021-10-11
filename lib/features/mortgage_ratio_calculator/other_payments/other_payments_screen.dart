@@ -23,6 +23,15 @@ class OtherPaymentsScreen extends StatefulWidget {
 class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
   final CurrencyTextInputFormatter formatter = CurrencyTextInputFormatter();
 
+  var _salesPriceOfHomeController = TextEditingController();
+  var _interestRateController = TextEditingController();
+  var _termsInYearsController = TextEditingController();
+  var _downPaymentController = TextEditingController();
+  var _yearlyTaxesController = TextEditingController();
+  var _homeOwnerInsuranceController = TextEditingController();
+  var _mortgageController = TextEditingController();
+  var _hoaMonthlyPaymentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MortgageRatioCalculatorBloc, MortgageRatioCalculatorState>(
@@ -48,19 +57,29 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SalesPriceOfHome(formatter: formatter),
+                    SalesPriceOfHome(
+                      formatter: formatter,
+                      salesPriceOfHomeController: _salesPriceOfHomeController,
+                    ),
                     SizedBox(
                       height: 18,
                     ),
-                    InterestRate(),
+                    InterestRate(
+                      interestRateController: _interestRateController,
+                    ),
                     SizedBox(
                       height: 18,
                     ),
-                    TermInYears(),
+                    TermInYears(
+                      termsInYearsController: _termsInYearsController,
+                    ),
                     SizedBox(
                       height: 18,
                     ),
-                    DownPaymentInUSD(formatter: formatter),
+                    DownPaymentInUSD(
+                      formatter: formatter,
+                      downPaymentController: _downPaymentController,
+                    ),
                     SizedBox(
                       height: 8,
                     ),
@@ -72,19 +91,31 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                     SizedBox(
                       height: 18,
                     ),
-                    YearlyTaxes(formatter: formatter),
+                    YearlyTaxes(
+                      formatter: formatter,
+                      yearlyTaxesController: _yearlyTaxesController,
+                    ),
                     SizedBox(
                       height: 18,
                     ),
-                    HomeOwnerInsurance(formatter: formatter),
+                    HomeOwnerInsurance(
+                      formatter: formatter,
+                      homeOwnerInsuranceController: _homeOwnerInsuranceController,
+                    ),
                     SizedBox(
                       height: 18,
                     ),
-                    MortgageInsurance(formatter: formatter),
+                    MortgageInsurance(
+                      formatter: formatter,
+                      mortgageController: _mortgageController,
+                    ),
                     SizedBox(
                       height: 18,
                     ),
-                    HOAMonthlyPayment(formatter: formatter),
+                    HOAMonthlyPayment(
+                      formatter: formatter,
+                      howMonthlyPaymentController: _hoaMonthlyPaymentController,
+                    ),
                     SizedBox(
                       height: 18,
                     ),
@@ -95,30 +126,47 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
                         child: Text(
+                          'Clear',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        onPressed: () async {
+                          ctx
+                              .read<MortgageRatioCalculatorBloc>()
+                              .add(ClearMortgageRatioCalculator());
+                          _salesPriceOfHomeController.clear();
+                          _interestRateController.clear();
+                          _termsInYearsController.clear();
+                          _downPaymentController.clear();
+                          _yearlyTaxesController.clear();
+                          _homeOwnerInsuranceController.clear();
+                          _mortgageController.clear();
+                          _hoaMonthlyPaymentController.clear();
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                        child: Text(
                           'Show Result',
                           style: TextStyle(fontSize: 20),
                         ),
                         onPressed: () async {
                           ctx.read<MortgageRatioCalculatorBloc>().add(ShowResult());
 
-                          var totalMortgagePayment = state.totalMortgagePayment;
-                          var backEndRatio = state.backEndRatio;
-                          var frontEndRatio = state.frontEndRatio;
-
-                          Future.delayed(
-                            Duration(seconds: 1),
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CalculationResultScreen(
-                                      // totalMortgagePayment: totalMortgagePayment,
-                                      // backEndRatio: backEndRatio,
-                                      // frontEndRatio: frontEndRatio,
-                                      ),
-                                ),
-                              );
-                            },
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CalculationResultScreen(
+                                  // totalMortgagePayment: totalMortgagePayment,
+                                  // backEndRatio: backEndRatio,
+                                  // frontEndRatio: frontEndRatio,
+                                  ),
+                            ),
                           );
                         },
                       ),
@@ -136,8 +184,11 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
 
 class SalesPriceOfHome extends StatelessWidget {
   final CurrencyTextInputFormatter formatter;
+  final TextEditingController salesPriceOfHomeController;
 
-  const SalesPriceOfHome({Key? key, required this.formatter}) : super(key: key);
+  const SalesPriceOfHome(
+      {Key? key, required this.formatter, required this.salesPriceOfHomeController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -152,6 +203,7 @@ class SalesPriceOfHome extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: salesPriceOfHomeController,
             style: TextStyle(
               color: Colors.black,
             ),
@@ -182,7 +234,9 @@ class SalesPriceOfHome extends StatelessWidget {
 }
 
 class InterestRate extends StatelessWidget {
-  const InterestRate({Key? key}) : super(key: key);
+  final TextEditingController interestRateController;
+
+  const InterestRate({Key? key, required this.interestRateController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -197,6 +251,7 @@ class InterestRate extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: interestRateController,
             style: TextStyle(
               color: Colors.black,
               // fontSize: 16,
@@ -233,7 +288,9 @@ class InterestRate extends StatelessWidget {
 }
 
 class TermInYears extends StatelessWidget {
-  const TermInYears({Key? key}) : super(key: key);
+  final TextEditingController termsInYearsController;
+
+  const TermInYears({Key? key, required this.termsInYearsController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -248,6 +305,7 @@ class TermInYears extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: termsInYearsController,
             style: TextStyle(
               color: Colors.black,
               fontSize: 18,
@@ -284,7 +342,9 @@ class TermInYears extends StatelessWidget {
 }
 
 class DownPaymentInPercentage extends StatelessWidget {
-  const DownPaymentInPercentage({Key? key}) : super(key: key);
+  const DownPaymentInPercentage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -330,7 +390,10 @@ class DownPaymentInPercentage extends StatelessWidget {
 
 class DownPaymentInUSD extends StatelessWidget {
   final CurrencyTextInputFormatter formatter;
-  const DownPaymentInUSD({Key? key, required this.formatter}) : super(key: key);
+  final TextEditingController downPaymentController;
+
+  const DownPaymentInUSD({Key? key, required this.formatter, required this.downPaymentController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -345,6 +408,7 @@ class DownPaymentInUSD extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: downPaymentController,
             style: TextStyle(
               color: Colors.black,
               fontSize: 18,
@@ -375,9 +439,12 @@ class DownPaymentInUSD extends StatelessWidget {
 }
 
 class YearlyTaxes extends StatelessWidget {
+  final TextEditingController yearlyTaxesController;
+
   final CurrencyTextInputFormatter formatter;
 
-  const YearlyTaxes({Key? key, required this.formatter}) : super(key: key);
+  const YearlyTaxes({Key? key, required this.formatter, required this.yearlyTaxesController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -392,6 +459,7 @@ class YearlyTaxes extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: yearlyTaxesController,
             style: TextStyle(
               color: Colors.black,
             ),
@@ -422,9 +490,13 @@ class YearlyTaxes extends StatelessWidget {
 }
 
 class HomeOwnerInsurance extends StatelessWidget {
+  final TextEditingController homeOwnerInsuranceController;
+
   final CurrencyTextInputFormatter formatter;
 
-  const HomeOwnerInsurance({Key? key, required this.formatter}) : super(key: key);
+  const HomeOwnerInsurance(
+      {Key? key, required this.formatter, required this.homeOwnerInsuranceController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -439,6 +511,7 @@ class HomeOwnerInsurance extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: homeOwnerInsuranceController,
             style: TextStyle(
               color: Colors.black,
             ),
@@ -471,7 +544,10 @@ class HomeOwnerInsurance extends StatelessWidget {
 class MortgageInsurance extends StatelessWidget {
   final CurrencyTextInputFormatter formatter;
 
-  const MortgageInsurance({Key? key, required this.formatter}) : super(key: key);
+  final TextEditingController mortgageController;
+
+  const MortgageInsurance({Key? key, required this.formatter, required this.mortgageController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -516,9 +592,13 @@ class MortgageInsurance extends StatelessWidget {
 }
 
 class HOAMonthlyPayment extends StatelessWidget {
+  final TextEditingController howMonthlyPaymentController;
+
   final CurrencyTextInputFormatter formatter;
 
-  const HOAMonthlyPayment({Key? key, required this.formatter}) : super(key: key);
+  const HOAMonthlyPayment(
+      {Key? key, required this.formatter, required this.howMonthlyPaymentController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -533,6 +613,7 @@ class HOAMonthlyPayment extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: howMonthlyPaymentController,
             style: TextStyle(
               color: Colors.black,
             ),
