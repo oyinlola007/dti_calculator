@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class OtherPaymentsScreen extends StatefulWidget {
   final num monthlyIncome;
@@ -313,7 +314,7 @@ class DownPaymentInPercentage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      'USD ${double.parse((state.downPayment).toStringAsFixed(2))}',
+                      '${NumberFormat.currency(name: 'USD ').format(state.downPayment)}',
                       style: TextStyle(fontSize: 18),
                       textAlign: TextAlign.center,
                     ),

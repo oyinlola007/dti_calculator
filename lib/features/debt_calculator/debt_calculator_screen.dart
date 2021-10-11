@@ -6,6 +6,7 @@ import 'package:dti_calculator/features/mortgage_ratio_calculator/other_payments
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import 'bloc/debt_calculator_bloc.dart';
 
@@ -122,7 +123,7 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
                   ),
                   MonthlyIncomeValueWidget(
                     title: "Total Debt Amount is show below: ",
-                    value: 'USD ${state.totalDebt}',
+                    value: '${NumberFormat.currency(name: 'USD ').format(state.totalDebt)}',
                     onPressAction: () {
                       print("===> Monthly Income ${widget.monthlyIncome}");
                       print("===> Loan Amount ${widget.loanAmount}");

@@ -2,6 +2,7 @@ import 'package:dti_calculator/features/mortgage_ratio_calculator/bloc/mortgage_
 import 'package:dti_calculator/features/mortgage_ratio_calculator/calculation_result/widget/calculation_result_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class CalculationResultScreen extends StatelessWidget {
   const CalculationResultScreen({
@@ -36,7 +37,7 @@ class CalculationResultScreen extends StatelessWidget {
                 ),
                 CalculationResultItemWidget(
                   title: 'Monthly Payment',
-                  value: "USD ${double.parse((state.monthlyPayment).toStringAsFixed(2))}",
+                  value: "${NumberFormat.currency(name: 'USD ').format(state.monthlyPayment)}",
                 ),
                 CalculationResultItemWidget(
                   title: 'Front End Ratio',

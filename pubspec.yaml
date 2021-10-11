@@ -64,6 +64,7 @@ dependencies:
   dartz: ^0.10.0-nullsafety.2
   internet_connection_checker: ^0.0.1+2
 
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
