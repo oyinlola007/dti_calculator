@@ -33,11 +33,11 @@ class CalculationResultScreen extends StatelessWidget {
               children: [
                 CalculationResultItemWidget(
                   title: 'Total Monthly Mortgage Payment',
-                  value: "USD ${double.parse((state.totalMortgagePayment).toStringAsFixed(2))}",
+                  value: NumberFormat.currency(name: 'USD ').format(state.totalMortgagePayment),
                 ),
                 CalculationResultItemWidget(
                   title: 'Monthly Payment',
-                  value: "${NumberFormat.currency(name: 'USD ').format(state.monthlyPayment)}",
+                  value: NumberFormat.currency(name: 'USD ').format(state.monthlyPayment),
                 ),
                 CalculationResultItemWidget(
                   title: 'Front End Ratio',
