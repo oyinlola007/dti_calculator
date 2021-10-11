@@ -115,7 +115,6 @@ class _DebtCalculatorScreenState extends State<DebtCalculatorScreen> {
                             onPressed: () {
                               setState(() {
                                 ctx.read<DebtCalculatorBloc>().add(Clear());
-                                setState(() {});
                                 // _values.add({
                                 //   "id": _values.length,
                                 //   "value": 0,

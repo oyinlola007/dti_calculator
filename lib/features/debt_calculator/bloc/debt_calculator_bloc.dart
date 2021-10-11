@@ -90,11 +90,11 @@ class DebtCalculatorBloc extends Bloc<DebtCalculatorEvent, DebtCalculatorState> 
 
   Stream<DebtCalculatorState> _mapClearEventToState(Clear event) async* {
     yield state.copyWith(totalDebt: 0, debtValues: []);
-    // yield state.copyWith(totalDebt: 0, debtValues: [
-    //   {
-    //     "id": 0,
-    //     "value": 0,
-    //   }
-    // ]);
+    yield state.copyWith(totalDebt: 0, debtValues: [
+      {
+        "id": 0,
+        "value": 0,
+      }
+    ]);
   }
 }
