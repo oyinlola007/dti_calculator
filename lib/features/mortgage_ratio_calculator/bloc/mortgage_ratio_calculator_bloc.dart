@@ -54,9 +54,9 @@ class MortgageRatioCalculatorBloc
       yield* _mapShowResultEventToState(event);
     }
 
-    // if (event is Reset) {
-    //   yield* _mapResetEventToState();
-    // }
+    if (event is ClearMortgageRatioCalculator) {
+      yield* _mapClearMortgageRatioCalculatorEventToState();
+    }
   }
 
   Stream<MortgageRatioCalculatorState> _mapUpdateIncomeLoanAndDebtEventToState(
@@ -158,5 +158,23 @@ class MortgageRatioCalculatorBloc
 
     print("===>fER $fER");
     print("===>bER $bER");
+  }
+
+  Stream<MortgageRatioCalculatorState> _mapClearMortgageRatioCalculatorEventToState() async* {
+    yield state.copyWith(
+      salesPriceOfHome: 0,
+      interestRate: 0,
+      termInYears: 0,
+      downPaymentInPercentage: 0,
+      downPayment: 0,
+      yearlyTaxes: 0,
+      homeOwnerInsurance: 0,
+      mortgageInsurance: 0,
+      hOAMonthlyPayment: 0,
+      totalMortgagePayment: 0,
+      monthlyPayment: 0,
+      frontEndRatio: 0,
+      backEndRatio: 0,
+    );
   }
 }

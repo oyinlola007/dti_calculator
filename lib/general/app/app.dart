@@ -23,21 +23,22 @@ class App extends StatelessWidget {
             return AppBloc(getOnBoardingCompletedUseCase: getIt())..add(GetAppState());
           },
         ),
-        BlocProvider<IncomeCalculatorBloc>(
-          create: (context) {
-            return IncomeCalculatorBloc();
-          },
-        ),
-        BlocProvider<StudentLoanBloc>(
-          create: (context) {
-            return StudentLoanBloc();
-          },
-        ),
-        BlocProvider<DebtCalculatorBloc>(
-          create: (context) {
-            return DebtCalculatorBloc();
-          },
-        ),
+
+        // BlocProvider<IncomeCalculatorBloc>(
+        //   create: (context) {
+        //     return IncomeCalculatorBloc();
+        //   },
+        // ),
+        // BlocProvider<StudentLoanBloc>(
+        //   create: (context) {
+        //     return StudentLoanBloc();
+        //   },
+        // ),
+        // BlocProvider<DebtCalculatorBloc>(
+        //   create: (context) {
+        //     return DebtCalculatorBloc();
+        //   },
+        // ),
         BlocProvider<MortgageRatioCalculatorBloc>(
           create: (context) {
             return MortgageRatioCalculatorBloc();

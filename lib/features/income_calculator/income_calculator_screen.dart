@@ -23,55 +23,58 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Income Calculation"),
-        centerTitle: true,
-        // backgroundColor: AppColors.primaryColor,
-      ),
-      body: BlocBuilder<IncomeCalculatorBloc, IncomeCalculatorState>(
-        builder: (context, state) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 16,
-                  ),
-                  DropdownButtonWidget(
-                    state.employeeType,
-                    (String newValue) {
-                      context.read<IncomeCalculatorBloc>().add(UpdateEmployeeType(newValue));
-                    },
-                    employeeTypes,
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  state.employeeType == Strings.hourlyEmployee
-                      ? HourlyEmployeeWidget()
-                      : SalaryEmployeeWidget(),
-                  MonthlyIncomeValueWidget(
-                    title: "Your Monthly income is show below: ",
-                    value: '${NumberFormat.currency(name: 'USD ').format(state.monthlyIncome)}',
-                    onPressAction: () {
-                      print("===> Monthly Income ${state.monthlyIncome}");
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StudentLoanScreen(
-                            monthlyIncome: state.monthlyIncome,
+    return BlocProvider(
+      create: (context) => IncomeCalculatorBloc(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Income Calculation"),
+          centerTitle: true,
+          // backgroundColor: AppColors.primaryColor,
+        ),
+        body: BlocBuilder<IncomeCalculatorBloc, IncomeCalculatorState>(
+          builder: (context, state) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 16,
+                    ),
+                    DropdownButtonWidget(
+                      state.employeeType,
+                      (String newValue) {
+                        context.read<IncomeCalculatorBloc>().add(UpdateEmployeeType(newValue));
+                      },
+                      employeeTypes,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    state.employeeType == Strings.hourlyEmployee
+                        ? HourlyEmployeeWidget()
+                        : SalaryEmployeeWidget(),
+                    MonthlyIncomeValueWidget(
+                      title: "Your Monthly income is show below: ",
+                      value: '${NumberFormat.currency(name: 'USD ').format(state.monthlyIncome)}',
+                      onPressAction: () {
+                        print("===> Monthly Income ${state.monthlyIncome}");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => StudentLoanScreen(
+                              monthlyIncome: state.monthlyIncome,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  )
-                ],
+                        );
+                      },
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

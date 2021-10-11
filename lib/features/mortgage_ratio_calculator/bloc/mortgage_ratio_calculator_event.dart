@@ -92,4 +92,4 @@ class UpdateHOAMonthlyPayment extends MortgageRatioCalculatorEvent {
 
 class ShowResult extends MortgageRatioCalculatorEvent {}
 
-class Reset extends MortgageRatioCalculatorEvent {}
+class ClearMortgageRatioCalculator extends MortgageRatioCalculatorEvent {}
