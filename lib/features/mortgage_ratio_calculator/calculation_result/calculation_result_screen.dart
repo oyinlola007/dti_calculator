@@ -42,7 +42,7 @@ class CalculationResultScreen extends StatelessWidget {
                   value: "${double.parse((state.backEndRatio).toStringAsFixed(2))}%",
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(32),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),

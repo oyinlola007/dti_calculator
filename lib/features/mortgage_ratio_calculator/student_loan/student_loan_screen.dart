@@ -170,15 +170,23 @@ class _StudentLoanScreenState extends State<StudentLoanScreen> {
                       },
                     ),
                     SizedBox(
-                      height: 8,
+                      height: 16,
+                    ),
+                    Container(
+                      height: 2,
+                      width: double.maxFinite,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(
+                      height: 16,
                     ),
                     Text(
-                      "DISCLAIMER !",
+                      "NOTE!",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20, color: Colors.red),
                     ),
                     SizedBox(
-                      height: 16,
+                      height: 8,
                     ),
                     Text(
                       Strings.loanDisclaimer,

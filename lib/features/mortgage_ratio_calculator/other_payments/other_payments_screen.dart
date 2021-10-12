@@ -57,6 +57,9 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    SizedBox(
+                      height: 18,
+                    ),
                     SalesPriceOfHome(
                       formatter: formatter,
                       salesPriceOfHomeController: _salesPriceOfHomeController,
@@ -85,11 +88,15 @@ class _OtherPaymentsScreenState extends State<OtherPaymentsScreen> {
                     ),
                     DownPaymentInPercentage(),
                     SizedBox(
-                      height: 18,
+                      height: 24,
                     ),
-                    Divider(),
+                    Container(
+                      height: 2,
+                      width: double.maxFinite,
+                      color: Colors.grey,
+                    ),
                     SizedBox(
-                      height: 18,
+                      height: 24,
                     ),
                     YearlyTaxes(
                       formatter: formatter,

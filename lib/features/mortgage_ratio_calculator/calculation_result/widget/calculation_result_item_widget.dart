@@ -18,7 +18,7 @@ class _CalculationResultItemWidgetState extends State<CalculationResultItemWidge
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          height: 8,
+          height: 16,
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

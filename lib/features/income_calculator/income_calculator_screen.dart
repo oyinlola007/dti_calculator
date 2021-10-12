@@ -39,7 +39,7 @@ class _IncomeCalculatorScreenState extends State<IncomeCalculatorScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 16,
+                      height: 32,
                     ),
                     DropdownButtonWidget(
                       state.employeeType,
