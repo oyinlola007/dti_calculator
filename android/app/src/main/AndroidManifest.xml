@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dti_calculator">
+    package="com.everypossibility.dti_calculator">
    <application
         android:label="DTI Calculator"
         android:icon="@mipmap/launcher_icon">

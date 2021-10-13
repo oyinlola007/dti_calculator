@@ -1,4 +1,4 @@
-package com.example.dti_calculator
+package com.everypossibility.dti_calculator
 
 import io.flutter.embedding.android.FlutterActivity
 
